@@ -6,9 +6,13 @@ import "./App.css";
 
 function App() {
   const [date, setDate] = useState();
+  const [imgUrl, setImgUrl] = useState();
 
   useEffect(() => {
-    axios.get('');
+    axios
+      .get('https://dog.ceo/api/breeds/image/random')
+      .then(response => setImgUrl(response.message))
+      .catch(console.log);
   });
 
   return (
