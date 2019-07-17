@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SpacePanel from "./components/SpacePanel/SpacePanel.js";
-import TimeButton from "./components/TimeButton/TimeButton.js";
+import TimeMachine from "./components/TimeMachine/TimeMachine.js";
 import axios from "axios";
 import "./App.css";
 
 function App() {
   const [date, setDate] = useState();
+  const [pendingDate, setPendingDate] = useState();
   const [imgUrl, setImgUrl] = useState();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function App() {
       </p>
       <h1>NASA Daily Photos</h1>
       <SpacePanel />
-      <TimeButton />
+      <TimeMachine />
     </div>
   );
 }
