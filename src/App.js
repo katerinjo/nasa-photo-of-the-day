@@ -11,15 +11,28 @@ function App() {
   const [imgUrl, setImgUrl] = useState(null);
 
   useEffect(() => {
-    if (pendingDate) {
-      axios
-        .get('https://dog.ceo/api/breeds/image/random')
-        .then(response => {
-          console.log('response:', response);
-          setImgUrl(response.data.message);
-          setExplanation('effect happened')
-        })
-        .catch(console.log);
+    if (pendingDate !== date) {
+      if (pendingDate) {
+        axios
+          .get('https://dog.ceo/api/breeds/image/random')
+          .then(response => {
+            console.log('response:', response);
+            setDate(pendingDate);
+            setImgUrl(response.data.message);
+            setExplanation('given real date')
+          })
+          .catch(console.log);
+      } else {
+        axios
+          .get('https://dog.ceo/api/breeds/image/random')
+          .then(response => {
+            console.log('response:', response);
+            setDate(null);
+            setImgUrl(response.data.message);
+            setExplanation('date is null/default/today')
+          })
+          .catch(console.log);
+      }
     }
   }, [pendingDate]);
 
