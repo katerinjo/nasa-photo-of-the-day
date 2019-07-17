@@ -5,25 +5,25 @@ export default function TimeMachine({ setDate }) {
         return dateText.split('-').map(Number)
     }
 
-    function validDate(plainText) {
-        //inputs meaning "Today"
-        if (['', 'now', 'today'].includes(plainText)) {
-            return true;
-        }
-
+    function makeValidDate(plainText) {
         //checks for valid YYYY-MM-DD date
-        if (plainText.matches(/^\d\d\d\d-\d\d-\d\d$/)) {
+        if (plainText.match(/^\d\d\d\d-\d\d-\d\d$/)) {
+            console.log('it matched');
             const [year, month, day] = parseDate(plainText);
-            return year <= 2019 && year < 2011 && month <= 12 && month > 0 && day <= 28 && day > 0;
+            if (year <= 2019 && year > 2011
+                && month <= 12 && month > 0
+                && day <= 28 && day > 0) {
+                return plainText;
+            }
         }
 
-        return false;
+        return null;
     }
 
     function tryUpdate(plainText) {
-        if (validDate(plainText)) {
-            setDate(plainText)
-        }
+        console.log('plainText', plainText);
+        console.log('makeValidDate', makeValidDate(plainText));
+        setDate(makeValidDate(plainText));
     }
 
     return <input type="text" onChange={event => tryUpdate(event.target.value)} />;
