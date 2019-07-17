@@ -1,4 +1,6 @@
 import React from "react";
+import SpacePanel from "./components/SpacePanel/SpacePanel.js";
+import TimeButton from "./components/TimeButton/TimeButton.js";
 import "./App.css";
 
 function App() {

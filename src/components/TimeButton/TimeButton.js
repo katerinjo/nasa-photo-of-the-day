@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function TimeButton() {
-    return <button>hello</button>
+    return <button>hello</button>;
 }
