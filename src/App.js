@@ -7,21 +7,16 @@ import "./App.css";
 function App() {
   const [explanation, setExplanation] = useState("Loading...")
   const [date, setDate] = useState(null);
-  const [pendingDate, setPendingDate] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
 
-  function validDate(plainText) {
-    return plainText === "2019-07-15"
-  }
-
   useEffect(() => {
-    if (validDate(pendingDate)) {
+    if (date) {
       axios
         .get('https://dog.ceo/api/breeds/image/random')
         .then(response => setImgUrl(response.message))
         .catch(console.log);
     }
-  }, [pendingDate]);
+  }, [date]);
 
   return (
     <div className="App">
@@ -35,7 +30,7 @@ function App() {
         date={date}
         explanation={explanation}
       />
-      <TimeMachine />
+      <TimeMachine setDate={setDate} />
     </div>
   );
 }
