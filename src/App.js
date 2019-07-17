@@ -11,28 +11,20 @@ function App() {
   const [imgUrl, setImgUrl] = useState(null);
 
   useEffect(() => {
+    function fetchData(date) {
+      const dateQuery = date ? `&date=${date}` : '';
+      axios
+        .get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY${dateQuery}`)
+        .then(response => {
+          console.log('response:', response);
+          setImgUrl(response.data.url);
+          setExplanation(response.data.explanation);
+        })
+        .catch(console.log);
+    }
     if (pendingDate !== date) {
-      if (pendingDate) {
-        axios
-          .get('https://dog.ceo/api/breeds/image/random')
-          .then(response => {
-            console.log('response:', response);
-            setDate(pendingDate);
-            setImgUrl(response.data.message);
-            setExplanation('given real date')
-          })
-          .catch(console.log);
-      } else {
-        axios
-          .get('https://dog.ceo/api/breeds/image/random')
-          .then(response => {
-            console.log('response:', response);
-            setDate(null);
-            setImgUrl(response.data.message);
-            setExplanation('date is null/default/today')
-          })
-          .catch(console.log);
-      }
+      fetchData(pendingDate);
+      setDate(pendingDate);
     }
   }, [pendingDate]);
 
