@@ -5,16 +5,23 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [date, setDate] = useState();
-  const [pendingDate, setPendingDate] = useState();
-  const [imgUrl, setImgUrl] = useState();
+  const [explanation, setExplanation] = useState("Loading...")
+  const [date, setDate] = useState(null);
+  const [pendingDate, setPendingDate] = useState(null);
+  const [imgUrl, setImgUrl] = useState(null);
+
+  function validDate(plainText) {
+    return plainText === "2019-07-15"
+  }
 
   useEffect(() => {
-    axios
-      .get('https://dog.ceo/api/breeds/image/random')
-      .then(response => setImgUrl(response.message))
-      .catch(console.log);
-  });
+    if (validDate(pendingDate)) {
+      axios
+        .get('https://dog.ceo/api/breeds/image/random')
+        .then(response => setImgUrl(response.message))
+        .catch(console.log);
+    }
+  }, [pendingDate]);
 
   return (
     <div className="App">
@@ -23,7 +30,11 @@ function App() {
         app! Have fun 🚀!
       </p>
       <h1>NASA Daily Photos</h1>
-      <SpacePanel />
+      <SpacePanel
+        imgUrl={imgUrl}
+        date={date}
+        explanation={explanation}
+      />
       <TimeMachine />
     </div>
   );
