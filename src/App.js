@@ -44,7 +44,7 @@ function App() {
     console.log('useEffect called');
     console.log('date', date, 'pendingDate', pendingDate);
     if (pendingDate !== date) {
-      fetchDataOther(pendingDate);
+      fetchData(pendingDate);
       setDate(pendingDate);
     }
   }, [pendingDate]);
