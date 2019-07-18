@@ -1,3 +1,5 @@
+//TODO: clean up `console.log`s and remove or use the counter
+
 import React, { useState, useEffect } from "react";
 import SpacePanel from "./components/SpacePanel/SpacePanel.js";
 import TimeMachine from "./components/TimeMachine/TimeMachine.js";
