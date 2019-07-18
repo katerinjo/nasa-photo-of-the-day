@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header as="h1" dividing>NASA Daily Photos</Header>
+      <Header as="h1" block textAlign="centered">NASA Daily Photos</Header>
       <SpacePanel
         imgUrl={imgUrl}
         date={date}

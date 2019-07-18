@@ -1,4 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const ControlPanel = styled.div`
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    background-color: #F3F4F5;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+`;
 
 export default function TimeMachine({ setDate }) {
     function parseDate(dateText) {
@@ -26,5 +38,9 @@ export default function TimeMachine({ setDate }) {
         setDate(makeValidDate(plainText));
     }
 
-    return <input type="text" onChange={event => tryUpdate(event.target.value)} />;
+    return (
+        <ControlPanel>
+            <input type="text" onChange={event => tryUpdate(event.target.value)} />
+        </ControlPanel>
+    );
 }
