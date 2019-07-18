@@ -12,21 +12,35 @@ const ControlPanel = styled.div`
     justify-content: space-around;
 `;
 
-const CommandInput = styled.input`
-    background-color: black;
+// const CommandInput = styled.input`
+//     background-color: black;
 
-    &::-webkit-input-placeholder {
-        color: grey;
-        content: "hahtnsueoa";
-    }
+//     &::-webkit-input-placeholder {
+//         color: grey;
+//         content: "hahtnsueoa";
+//     }
+// `;
+
+const indicatorCss = `
+    font-size: 2rem;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    padding: 1.5rem;
 `;
 
-const ValidIndicator = styled.p`
-    ${props => props.isValid ? "color: darkgreen;" : "color: darkred;"}
+const ValidIndicator = styled.div`
+    ${indicatorCss}
+    ${props => props.isValid ?
+        "color: darkgreen; background-color: lightgreen; border-color: dark-green" :
+        "color: darkred; background-color: pink; border-color: darkred;"}
 `;
 
-const QueryCount = styled.p`
+const QueryCount = styled.div`
+    ${indicatorCss}
     color: blue;
+    background-color: lightblue;
+    border-color: blue;
 `;
 
 export default function TimeMachine({ setDate, queryCount }) {
@@ -66,6 +80,7 @@ export default function TimeMachine({ setDate, queryCount }) {
                 type="text"
                 placeHolder="YYYY-MM-DD"
                 onChange={event => tryUpdate(event.target.value)}
+                style={{ "text-align": "center" }}
             />
             <QueryCount children={queryCount} />
         </ControlPanel>
