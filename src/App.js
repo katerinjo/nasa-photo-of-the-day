@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import SpacePanel from "./components/SpacePanel/SpacePanel.js";
 import TimeMachine from "./components/TimeMachine/TimeMachine.js";
+import { Header } from "semantic-ui-react";
 import axios from "axios";
 import "./App.css";
 
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>NASA Daily Photos</h1>
+      <Header as="h1" dividing>NASA Daily Photos</Header>
       <SpacePanel
         imgUrl={imgUrl}
         date={date}
