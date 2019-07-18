@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const ControlPanel = styled.div`
@@ -9,10 +9,29 @@ const ControlPanel = styled.div`
     background-color: #F3F4F5;
     padding: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 `;
 
-export default function TimeMachine({ setDate }) {
+const CommandInput = styled.input`
+    background-color: black;
+
+    &::-webkit-input-placeholder {
+        color: grey;
+        content: "hahtnsueoa";
+    }
+`;
+
+const ValidIndicator = styled.p`
+    ${props => props.isValid ? "color: darkgreen;" : "color: darkred;"}
+`;
+
+const QueryCount = styled.p`
+    color: blue;
+`;
+
+export default function TimeMachine({ setDate, queryCount }) {
+    const [valid, setValid] = useState(false);
+
     function parseDate(dateText) {
         return dateText.split('-').map(Number)
     }
@@ -29,18 +48,26 @@ export default function TimeMachine({ setDate }) {
             }
         }
 
-        return null;
+        return null; //invalid date (defaults to today)
     }
 
     function tryUpdate(plainText) {
         console.log('plainText', plainText);
         console.log('makeValidDate', makeValidDate(plainText));
-        setDate(makeValidDate(plainText));
+        const dateOrNull = makeValidDate(plainText);
+        setValid(dateOrNull !== null);
+        setDate(dateOrNull);
     }
 
     return (
         <ControlPanel>
-            <input type="text" onChange={event => tryUpdate(event.target.value)} />
+            <ValidIndicator isValid={valid} children={valid ? `Valid` : `Invalid Date`} />
+            <input
+                type="text"
+                placeHolder="YYYY-MM-DD"
+                onChange={event => tryUpdate(event.target.value)}
+            />
+            <QueryCount children={queryCount} />
         </ControlPanel>
     );
 }

@@ -57,7 +57,7 @@ function App() {
         date={date}
         explanation={explanation}
       />
-      <TimeMachine setDate={setPendingDate} />
+      <TimeMachine setDate={setPendingDate} queryCount={axiosCount} />
     </div>
   );
 }
