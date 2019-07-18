@@ -9,8 +9,8 @@ import "./App.css";
 
 function App() {
   const [explanation, setExplanation] = useState("Loading...")
-  const [pendingDate, setPendingDate] = useState('');
-  const [date, setDate] = useState(null);
+  const [pendingDate, setPendingDate] = useState(null);
+  const [date, setDate] = useState("initialize");
   const [imgUrl, setImgUrl] = useState(null);
   const [axiosCount, setAxiosCount] = useState(0);
 
